@@ -738,12 +738,211 @@
     font-size: 1.5rem;
     letter-spacing: 0.5em;
   }
+
+  /* ─── HAMBURGER MENU ─── */
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 6px;
+    z-index: 200;
+    background: none;
+    border: none;
+  }
+  .nav-hamburger span {
+    display: block;
+    width: 26px;
+    height: 2px;
+    background: var(--gold);
+    border-radius: 2px;
+    transition: transform 0.35s ease, opacity 0.35s ease;
+  }
+  .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+  .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* Mobile nav overlay */
+  .nav-mobile-menu {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(26,13,7,0.97);
+    z-index: 150;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    transition: opacity 0.35s ease;
+  }
+  .nav-mobile-menu.open {
+    display: flex;
+    opacity: 1;
+  }
+  .nav-mobile-menu a {
+    font-family: 'Cinzel', serif;
+    font-size: 1.3rem;
+    letter-spacing: 0.25em;
+    color: rgba(250,246,238,0.8);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.3s;
+    cursor: pointer;
+  }
+  .nav-mobile-menu a:hover { color: var(--gold); }
+  .nav-mobile-menu .mobile-menu-divider {
+    width: 40px;
+    height: 1px;
+    background: rgba(201,168,76,0.3);
+  }
+
+  /* ─── RESPONSIVE: TABLET & MOBILE ─── */
+  @media (max-width: 900px) {
+    /* Nav */
+    .nav-links { display: none; }
+    .nav-hamburger { display: flex; }
+
+    /* Hero */
+    .mandala-wrap {
+      display: none;
+    }
+    .hero-content {
+      text-align: center;
+      padding-left: 0;
+      padding: 0 1.5rem;
+      max-width: 100%;
+    }
+    .hero-sub { max-width: 100%; margin-left: auto; margin-right: auto; }
+    .hero-cta { cursor: auto; }
+
+    /* Story grid → single column */
+    .story-grid {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+    .sari-visual { height: 260px; }
+    .sari-fold:nth-child(1) { height: 240px; }
+    .sari-fold:nth-child(2) { height: 225px; }
+    .sari-fold:nth-child(3) { height: 230px; }
+    .sari-fold:nth-child(4) { height: 220px; }
+
+    /* Services → 2 columns */
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+
+    /* Showcase → single column */
+    .showcase-stage {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+    .garment-display { height: 340px; }
+
+    /* Testimonials → 1 column */
+    .testimonials-grid { grid-template-columns: 1fr; }
+
+    /* Contact → single column */
+    .contact-section {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    /* Footer → stacked */
+    footer {
+      flex-direction: column;
+      gap: 1rem;
+      text-align: center;
+    }
+
+    /* Sections padding */
+    section { padding: 5rem 5%; }
+    .contact-wrap { padding: 5rem 5%; }
+    .showcase-section { padding: 6rem 5%; }
+  }
+
+  @media (max-width: 600px) {
+    /* Cursor disabled on touch */
+    .cursor, .cursor-ring { display: none; }
+    body { cursor: auto; }
+    .hero-cta, .nav-links a, .submit-btn,
+    .form-group input, .form-group textarea,
+    .form-group select { cursor: auto; }
+
+    nav { padding: 1.2rem 5%; }
+
+    .nav-logo { font-size: 1rem; }
+
+    /* Hero */
+    .hero-title { font-size: clamp(2.2rem, 9vw, 3.5rem); }
+    .hero-tamil { font-size: 0.8rem; letter-spacing: 0.1em; }
+    .hero-sub { font-size: 1rem; }
+    .hero-cta { padding: 0.85rem 1.6rem; font-size: 0.72rem; }
+
+    /* Services → 1 column on small phones */
+    .services-grid { grid-template-columns: 1fr; }
+    .service-card { padding: 2rem 1.5rem; }
+
+    /* Story */
+    .story-text .quote { font-size: 1.1rem; }
+
+    /* Showcase */
+    .garment-display { height: 280px; }
+    .garment-carousel { width: 160px; height: 240px; }
+    .garment-face {
+      width: 160px;
+      height: 240px;
+    }
+    .garment-face:nth-child(1) { transform: translateZ(100px); }
+    .garment-face:nth-child(2) { transform: rotateY(90deg) translateZ(100px); }
+    .garment-face:nth-child(3) { transform: rotateY(180deg) translateZ(100px); }
+    .garment-face:nth-child(4) { transform: rotateY(270deg) translateZ(100px); }
+
+    /* Instagram gallery → 1 column on very small */
+    .ig-grid-mobile { grid-template-columns: 1fr !important; }
+
+    /* Section titles */
+    .section-title { font-size: clamp(1.8rem, 7vw, 2.8rem); }
+
+    /* Contact */
+    .contact-section { gap: 2rem; }
+
+    /* Testimonials */
+    .testimonial-card { padding: 1.8rem; }
+
+    /* Footer */
+    footer { padding: 2rem 5%; }
+
+    /* Contact section inline styles override */
+    .contact-info-cards-mobile {
+      flex-direction: column !important;
+    }
+  }
+
+  /* Touch-friendly: larger tap targets */
+  @media (hover: none) and (pointer: coarse) {
+    .hero-cta { padding: 1rem 2rem; min-height: 48px; }
+    .submit-btn { min-height: 52px; }
+    .nav-hamburger { min-height: 44px; min-width: 44px; justify-content: center; }
+    .service-card:hover { border-color: rgba(201,168,76,0.12); }
+    .service-card:hover::before { opacity: 0; }
+  }
 </style>
 </head>
 <body>
 
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursor-ring"></div>
+
+<!-- MOBILE MENU OVERLAY -->
+<div class="nav-mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-divider"></div>
+  <a href="#story" onclick="closeMobileMenu()">Geschichte</a>
+  <a href="#services" onclick="closeMobileMenu()">Leistungen</a>
+  <a href="#showcase" onclick="closeMobileMenu()">Kollektion</a>
+  <a href="#contact" onclick="closeMobileMenu()">Kontakt</a>
+  <div class="mobile-menu-divider"></div>
+  <p style="font-family:'Noto Serif Tamil',serif;font-size:0.9rem;color:rgba(201,168,76,0.5);">தையல்கிரிஜா ஸ்விஸ்</p>
+</div>
 
 <!-- NAV -->
 <nav>
@@ -757,6 +956,11 @@
     <li><a href="#showcase">Kollektion</a></li>
     <li><a href="#contact">Kontakt</a></li>
   </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menü öffnen" onclick="toggleMobileMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
 </nav>
 
 <!-- HERO -->
@@ -1035,7 +1239,7 @@
         Profil besuchen →
       </a>
     </div>
-    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1rem;" class="reveal">
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1rem;" class="reveal ig-grid-mobile">
       <!-- Slot 1 -->
       <div style="aspect-ratio:1; background:rgba(201,168,76,0.06); border:1px solid rgba(201,168,76,0.15); display:flex; flex-direction:column; align-items:center; justify-content:center; position:relative; overflow:hidden; transition:border-color 0.3s;" onmouseenter="this.style.borderColor='rgba(201,168,76,0.4)'" onmouseleave="this.style.borderColor='rgba(201,168,76,0.15)'">
         <img id="ig-img-1" src="" alt="Instagram Bild 1" style="width:100%;height:100%;object-fit:cover;display:none;position:absolute;inset:0;">
@@ -1092,14 +1296,17 @@
     <div class="testimonial-card reveal">
       <div class="stars">★ ★ ★ ★ ★</div>
       <p class="testimonial-text">„Mein Hochzeits-Sari war ein Traum. Die Stickerei war so fein und detailreich, alle Gäste haben nur gefragt, woher er stammt. Ich bin zutiefst dankbar."</p>
+      <p class="testimonial-author">Kundin aus Zürich</p>
     </div>
     <div class="testimonial-card reveal">
       <div class="stars">★ ★ ★ ★ ★</div>
       <p class="testimonial-text">„Für unser Deepavali-Fest habe ich für meine ganze Familie Kleider bestellt. Die Qualität und Passform sind perfekt. Tailoringkirija Swiss ist unsere Familie-Schneiderei seit Jahren."</p>
+      <p class="testimonial-author">Kundin aus Basel</p>
     </div>
     <div class="testimonial-card reveal">
       <div class="stars">★ ★ ★ ★ ★</div>
       <p class="testimonial-text">„Mein Hochzeitsgewand wurde mit so viel Liebe gefertigt. Die goldene Zari-Borte war wunderschön. Sehr empfehlenswert!"</p>
+      <p class="testimonial-author">Kunde aus Bern</p>
     </div>
   </div>
 </section>
@@ -1209,7 +1416,7 @@
         onmouseleave="this.style.borderColor='rgba(201,168,76,0.15)';this.style.transform='translateX(0)'">
         <div style="position:absolute;top:0;left:0;width:3px;height:100%;background:linear-gradient(to bottom, var(--gold), transparent);"></div>
         <p class="contact-label" style="font-family:'Cinzel',serif;font-size:0.6rem;letter-spacing:0.2em;color:rgba(201,168,76,0.6);margin-bottom:0.5rem;">E-Mail</p>
-        <p style="color:var(--cream);font-size:1rem;font-weight:300;">tailoringkirjaswiss@gmail.com</p>
+        <p style="color:var(--cream);font-size:1rem;font-weight:300;">info@tailoringkirijaswiss.ch</p>
       </div>
     </div>
 
@@ -1282,15 +1489,6 @@
     </div>
   </div>
 
-  <!-- BOTTOM: Google Maps embed full width -->
-  <div style="position:relative; z-index:2; padding:0 6% 7rem;" class="reveal">
-    <div style="border:1px solid rgba(201,168,76,0.2); overflow:hidden; position:relative;">
-      <!-- gold corner accents -->
-      <div style="position:absolute;top:0;left:0;width:30px;height:30px;border-top:2px solid var(--gold);border-left:2px solid var(--gold);z-index:3;pointer-events:none;"></div>
-      <div style="position:absolute;top:0;right:0;width:30px;height:30px;border-top:2px solid var(--gold);border-right:2px solid var(--gold);z-index:3;pointer-events:none;"></div>
-      <div style="position:absolute;bottom:0;left:0;width:30px;height:30px;border-bottom:2px solid var(--gold);border-left:2px solid var(--gold);z-index:3;pointer-events:none;"></div>
-      <div style="position:absolute;bottom:0;right:0;width:30px;height:30px;border-bottom:2px solid var(--gold);border-right:2px solid var(--gold);z-index:3;pointer-events:none;"></div>
-    
 
 </div>
 
@@ -1304,17 +1502,45 @@
 </footer>
 
 <script>
-// Custom cursor
+// Mobile menu
+function toggleMobileMenu() {
+  const menu = document.getElementById('mobileMenu');
+  const btn  = document.getElementById('hamburger');
+  const isOpen = menu.classList.contains('open');
+  if (isOpen) {
+    menu.classList.remove('open');
+    btn.classList.remove('open');
+    document.body.style.overflow = '';
+  } else {
+    menu.classList.add('open');
+    btn.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+}
+function closeMobileMenu() {
+  document.getElementById('mobileMenu').classList.remove('open');
+  document.getElementById('hamburger').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// Custom cursor — only on non-touch devices
+const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
 const cursor = document.getElementById('cursor');
 const ring   = document.getElementById('cursor-ring');
-document.addEventListener('mousemove', e => {
-  cursor.style.left = e.clientX + 'px';
-  cursor.style.top  = e.clientY + 'px';
-  setTimeout(() => {
-    ring.style.left = e.clientX + 'px';
-    ring.style.top  = e.clientY + 'px';
-  }, 80);
-});
+if (!isTouchDevice) {
+  document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top  = e.clientY + 'px';
+    setTimeout(() => {
+      ring.style.left = e.clientX + 'px';
+      ring.style.top  = e.clientY + 'px';
+    }, 80);
+  });
+} else {
+  cursor.style.display = 'none';
+  ring.style.display   = 'none';
+  document.body.style.cursor = 'auto';
+}
 
 // Threads canvas
 const canvas = document.getElementById('threads-canvas');
